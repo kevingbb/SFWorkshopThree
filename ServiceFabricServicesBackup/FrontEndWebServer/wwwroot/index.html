@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Adding Camera Actors</title>
+    <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <script type="text/javascript" src="lib/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript">
+        var serviceUrl = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '');
+        var serviceUrl = serviceUrl + location.pathname;
+
+        function AddCameraActor()
+        {
+            $.ajax({
+                url: serviceUrl + '/api/cameras/',
+                method: 'POST'
+            })
+           .done(function (cameraResult) {
+               $('#camera').html(cameraResult);
+           });
+        }
+
+    </script>
+    <div class="jumbotron">
+        <h1>Click button to add another Camera Actor. Then take the identifier and do a GET to retrieve it.</h1>
+        <p>
+            <a class="btn btn-primary btn-lg" role="button" onclick="AddCameraActor();">
+                Add Camera Actor
+            </a>
+        </p>
+    </div>
+    <div id="camera"></div>
+</body>
+</html>
