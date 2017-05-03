@@ -36,6 +36,14 @@ namespace FrontEndWebServer.Controllers
         [HttpGet("{id}")]
         public async Task<IEnumerable<string>> Get(long id)
         {
+            // Note that even this GET creates an Actor based on the id
+            // passed in because of the OnActivateAsync() method. The
+            // OnActivateAsync() method gets triggered the first time
+            // any of the Actor methods are invoked. In this case, the
+            // GetCameraAsync() method is called below. This means the
+            // OnActivateSync() method gets triggered, which creates
+            // the actor before the execution of GetCameraAsync.
+            // This is something you need to watch out for.
             CameraObject camera = null;
             ActorId actorId = new ActorId(id);
             IBackEndCameraActor cameraActor = ActorProxy.Create<IBackEndCameraActor>(actorId, backEndCameraActorServiceUri);

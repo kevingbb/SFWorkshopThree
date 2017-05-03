@@ -15,7 +15,7 @@
         function AddCameraActor()
         {
             $.ajax({
-                url: serviceUrl + '/api/cameras/',
+                url: serviceUrl + 'api/cameras/',
                 method: 'POST'
             })
            .done(function (cameraResult) {
@@ -25,7 +25,7 @@
 
     </script>
     <div class="jumbotron">
-        <h1>Click button to add another Camera Actor. Then take the identifier and do a GET to retrieve it.</h1>
+        <h1>Click button to add another Camera Actor. Then take the identifier and do a GET to retrieve it. Did you notice something odd?</h1>
         <p>
             <a class="btn btn-primary btn-lg" role="button" onclick="AddCameraActor();">
                 Add Camera Actor
